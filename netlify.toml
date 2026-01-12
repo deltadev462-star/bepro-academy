@@ -1,11 +1,15 @@
 [build]
-  # Directory to publish (the root directory with HTML files)
+  # Serve files from root directory
   publish = "."
   
-  # Skip the build command - we'll serve static files directly
-  command = "echo 'Using pre-built static files'"
+  # Skip build completely - no npm install or build needed
+  command = "echo 'Skipping build - serving static files'"
 
-# Redirects for the main page
+# Skip npm install
+[build.environment]
+  NPM_FLAGS = "--version"
+
+# Redirect root to the HTML file
 [[redirects]]
   from = "/"
   to = "/bepro-academy-complete.html"
@@ -16,14 +20,13 @@
   to = "/bepro-academy-complete.html"
   status = 200
 
-# Headers for better performance
+# Headers for performance
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
     
 [[headers]]
   for = "/assets/*"
