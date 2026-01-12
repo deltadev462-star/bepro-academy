@@ -1,24 +1,6 @@
 [build]
   # Serve files from root directory
   publish = "."
-  
-  # Skip build completely - no npm install or build needed
-  command = "echo 'Skipping build - serving static files'"
-
-# Skip npm install
-[build.environment]
-  NPM_FLAGS = "--version"
-
-# Redirect root to the HTML file
-[[redirects]]
-  from = "/"
-  to = "/bepro-academy-complete.html"
-  status = 200
-
-[[redirects]]
-  from = "/index.html"
-  to = "/bepro-academy-complete.html"
-  status = 200
 
 # Headers for performance
 [[headers]]
