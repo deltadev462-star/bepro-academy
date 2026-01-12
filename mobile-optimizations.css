@@ -1,0 +1,209 @@
+/* Additional Mobile Optimizations for BePro Academy */
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* iOS Input Focus Fix */
+input:focus,
+textarea:focus,
+select:focus {
+    font-size: 16px !important;
+}
+
+/* Android Keyboard Push Fix */
+@media screen and (max-width: 768px) {
+    body.keyboard-open .chatbot-widget,
+    body.keyboard-open .team-icons {
+        display: none;
+    }
+}
+
+/* Touch-friendly hover states */
+@media (hover: hover) and (pointer: fine) {
+    /* Desktop hover states */
+    .feature-card:hover,
+    .team-button:hover,
+    .social-link:hover {
+        transform: translateY(-5px);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    /* Mobile touch states */
+    .feature-card:active,
+    .team-button:active,
+    .social-link:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+}
+
+/* Optimize animations for mobile performance */
+@media (max-width: 768px) {
+    .particle,
+    .ai-particle {
+        display: none; /* Hide particles on mobile for better performance */
+    }
+    
+    /* Disable complex animations on mobile */
+    .feature-icon {
+        animation: none !important;
+    }
+}
+
+/* Samsung Internet Browser Fixes */
+@supports (-webkit-appearance: none) and (not (-ms-ime-align: auto)) {
+    .form-control {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+}
+
+/* PWA Installation Banner Space */
+@media (display-mode: standalone) {
+    .hero-container {
+        padding-top: 20px;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .feature-card {
+        border: 2px solid currentColor;
+    }
+    
+    .submit-btn,
+    .submit-contact-btn {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Optimize for foldable devices */
+@media (screen-spanning: single-fold-vertical) {
+    .hero-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Android Material Design Ripple Effect */
+.submit-btn,
+.submit-contact-btn,
+.quick-reply,
+.tab-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::after,
+.submit-contact-btn::after,
+.quick-reply::after,
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.submit-btn:active::after,
+.submit-contact-btn:active::after,
+.quick-reply:active::after,
+.tab-btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Optimize scrolling performance */
+.chat-messages,
+.popup-content {
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+}
+
+/* Prevent text selection on interactive elements */
+.team-button,
+.chatbot-button,
+.quick-reply,
+.social-link {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Improve readability on small screens */
+@media (max-width: 320px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .platform-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .feature-card {
+        padding: 20px 15px;
+    }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+    /* Increase tap target sizes */
+    a, button, input, select, textarea {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Better focus indicators */
+    *:focus {
+        outline: 3px solid #009FFD;
+        outline-offset: 2px;
+    }
+}
+
+/* Network-aware optimizations */
+@media (prefers-reduced-data: reduce) {
+    .video-bg {
+        display: none;
+    }
+    
+    .video-section {
+        background: url('./assets/hero-background.png') center/cover;
+    }
+    
+    /* Replace emoji with text */
+    .feature-icon {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+
+/* Print styles for mobile */
+@media print {
+    .chatbot-widget,
+    .team-icons,
+    .video-bg,
+    .particles {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: black;
+        background: white;
+    }
+}

@@ -1,10 +1,31 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#009FFD">
+    <meta name="format-detection" content="telephone=no">
     <title>BePro-Academy - Master Financial Markets Analysis</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://upload.wikimedia.org">
+    
     <style>
+        /* CSS Reset for better mobile compatibility */
+        *, *::before, *::after {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        input, textarea {
+            -webkit-user-select: text;
+            user-select: text;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -15,6 +36,25 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
             background: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: pan-y;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+        
+        /* Smooth scrolling for all devices */
+        html {
+            scroll-behavior: smooth;
+            min-height: -webkit-fill-available;
+        }
+        
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
         }
         
         /* Section 1: Video Background with Login Panel */
@@ -22,15 +62,33 @@
             position: relative;
             height: 100vh;
             min-height: 600px;
-            display: block;
+            display: flex;
+            background: #000;
         }
         
+        /* Auth Panel - Now on the left, 20% width */
+        .auth-section {
+            width: 20%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 5px 0 40px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Video Section - Now 80% width */
         .video-section {
-            width: 100%;
+            width: 80%;
             height: 100%;
             position: relative;
             overflow: hidden;
-            background: transparent;
+            background: #000;
         }
         
         .video-bg {
@@ -51,34 +109,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: transparent;
+            background: rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
-        /* Auth Panel */
-        .auth-section {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 380px;
-            max-height: 90vh;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            overflow-y: auto;
-            border-radius: 16px;
-        }
-        
         .auth-container {
             width: 100%;
-            max-width: 320px;
             margin: 0 auto;
         }
         
@@ -89,20 +127,22 @@
         }
         
         .academy-branding h1 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             background: linear-gradient(135deg, #009FFD 0%, #2A93D5 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.3rem;
+            text-align: center;
         }
         
         .academy-branding p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #666;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            text-align: center;
         }
         
         /* Platform Badges */
@@ -123,7 +163,7 @@
         }
         
         .platform-badge img {
-            height: 35px;
+            height: 32px;
             width: auto;
         }
         
@@ -133,15 +173,17 @@
         }
         
         .auth-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #000428;
             margin-bottom: 8px;
             font-weight: 600;
+            text-align: center;
         }
         
         .auth-header p {
             color: #666;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            text-align: center;
         }
         
         /* Tab Buttons */
@@ -153,10 +195,10 @@
         
         .tab-btn {
             flex: 1;
-            padding: 15px;
+            padding: 12px 10px;
             background: none;
             border: none;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #666;
             cursor: pointer;
             transition: all 0.3s;
@@ -207,10 +249,10 @@
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 11px 14px;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.3s;
             background: #f9f9f9;
         }
@@ -1730,16 +1772,16 @@
         
         .submit-btn {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             background: linear-gradient(135deg, #009FFD 0%, #2A93D5 100%);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 25px;
+            margin-top: 20px;
         }
         
         .submit-btn:hover {
@@ -1747,54 +1789,539 @@
             box-shadow: 0 10px 20px rgba(0,159,253,0.3);
         }
         
-        /* Responsive */
+        /* Enhanced Responsive Design */
+        
+        /* Tablets and Small Laptops */
+        @media (max-width: 1024px) {
+            .platform-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .new-section-content h2 {
+                font-size: 3rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .education-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .contact-form {
+                padding: 40px;
+            }
+        }
+        
+        /* Tablets - maintain side-by-side with 25% auth */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .auth-section {
+                width: 25%;
+                padding: 30px 20px;
+            }
+            
+            .video-section {
+                width: 75%;
+            }
+            
+            .academy-branding h1 {
+                font-size: 1.4rem;
+            }
+            
+            .platform-badge img {
+                height: 28px;
+            }
+        }
+        
+        /* Mobile Devices - Portrait */
         @media (max-width: 768px) {
+            /* Hero Section Mobile Optimization */
             .hero-container {
                 height: 100vh;
                 min-height: 100vh;
+                min-height: -webkit-fill-available;
                 display: flex;
                 flex-direction: column;
             }
             
-            .video-section {
-                height: 50vh;
-                flex-shrink: 0;
-            }
-            
             .auth-section {
-                position: relative;
-                right: auto;
-                top: auto;
-                transform: none;
                 width: 100%;
-                max-height: none;
-                border-radius: 0;
-                margin-top: 0;
-                flex-grow: 1;
-                display: flex;
-                align-items: center;
+                height: 60vh;
+                order: 2;
+                box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+                padding: 30px 20px;
+                overflow-y: auto;
             }
             
+            .video-section {
+                width: 100%;
+                height: 40vh;
+                order: 1;
+            }
+            
+            .video-bg {
+                object-fit: cover;
+                object-position: center;
+            }
+            
+            .academy-branding h1 {
+                font-size: 1.5rem;
+            }
+            
+            .platform-badges {
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .platform-badge img {
+                height: 30px;
+            }
+            
+            /* Typography Mobile Optimization */
             .platform-header h2 {
                 font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            
+            .platform-header p {
+                font-size: 1.1rem;
+                line-height: 1.6;
             }
             
             .statement {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            
+            .new-section-content h2 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .new-section-content p {
+                font-size: 1.2rem;
+            }
+            
+            /* Grid Layouts Mobile */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .feature-card {
+                padding: 30px 25px;
+            }
+            
+            .education-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .stat-card {
+                padding: 30px 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .education-features {
+                gap: 15px;
+            }
+            
+            .education-feature {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            /* Contact Form Mobile */
+            .contact-form {
+                padding: 30px 20px;
+                border-radius: 15px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .contact-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            /* Footer Mobile */
+            footer {
+                padding: 40px 15px 20px !important;
+            }
+            
+            footer h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            /* Team Icons Mobile Position */
+            .team-icons {
+                bottom: 100px;
+                right: 20px;
+                gap: 10px;
+            }
+            
+            .team-button {
+                width: 55px;
+                height: 55px;
+            }
+            
+            /* Popup Mobile */
+            .team-popup {
+                width: 95%;
+                max-height: 85vh;
+                border-radius: 15px;
+            }
+            
+            .popup-content {
+                padding: 25px;
+                max-height: calc(85vh - 100px);
+            }
+            
+            .member-avatar {
+                width: 90px;
+                height: 90px;
+                font-size: 3rem;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+        
+        /* Small Mobile Devices */
+        @media (max-width: 480px) {
+            /* Chatbot Mobile Optimization */
+            .chatbot-widget {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .chatbot-window {
+                width: calc(100vw - 30px);
+                height: calc(100vh - 100px);
+                bottom: 70px;
+                right: -7.5px;
+                border-radius: 15px;
+            }
+            
+            .chatbot-button {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .chat-header {
+                padding: 15px;
+            }
+            
+            .chat-messages {
+                padding: 15px;
+                gap: 12px;
+            }
+            
+            .message {
+                font-size: 13px;
+                max-width: 85%;
+            }
+            
+            .quick-replies {
+                padding: 10px 15px;
+                gap: 8px;
+            }
+            
+            .quick-reply {
+                font-size: 12px;
+                padding: 7px 14px;
+            }
+            
+            .chat-input-container {
+                padding: 15px;
+            }
+            
+            /* Form Elements Mobile */
+            .form-control {
+                padding: 12px 15px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .auth-container {
+                max-width: 400px;
+            }
+            
+            .submit-btn, .submit-contact-btn {
+                padding: 16px;
+                font-size: 1rem;
+                border-radius: 8px;
+                -webkit-appearance: none;
+            }
+            
+            /* Auth Forms Mobile */
+            .auth-header h2 {
                 font-size: 1.3rem;
+            }
+            
+            .academy-branding h1 {
+                font-size: 1.6rem;
+            }
+            
+            .platform-badge img {
+                height: 30px;
+            }
+            
+            .auth-tabs {
+                margin-bottom: 15px;
+            }
+            
+            .tab-btn {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+            
+            /* Typography Small Mobile */
+            .platform-header h2 {
+                font-size: 1.75rem;
+            }
+            
+            .platform-header p {
+                font-size: 1rem;
+            }
+            
+            .statement {
+                font-size: 1rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.9rem;
+            }
+            
+            /* Sections Padding Mobile */
+            .platform-section {
+                padding: 60px 15px;
+            }
+            
+            .new-background-section {
+                padding: 60px 15px;
+            }
+            
+            .contact-section {
+                padding: 60px 15px;
+            }
+            
+            /* Team Icons Very Small Mobile */
+            .team-icons {
+                bottom: 90px;
+                right: 15px;
+            }
+            
+            .team-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            /* Social Links Mobile */
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero-container {
+                flex-direction: row;
+                height: 100vh;
+            }
+            
+            .auth-section {
+                width: 30%;
+                height: 100vh;
+                order: 1;
+                box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+                padding: 20px 15px;
+            }
+            
+            .video-section {
+                width: 70%;
+                height: 100vh;
+                order: 2;
+            }
+            
+            .academy-branding h1 {
+                font-size: 1.2rem;
+            }
+            
+            .platform-badges {
+                margin-bottom: 10px;
+            }
+            
+            .platform-badge img {
+                height: 22px;
+            }
+            
+            .statements-section {
+                height: 3cm;
+            }
+            
+            .chatbot-window {
+                height: 400px;
+                width: 350px;
+            }
+        }
+        
+        /* iPhone X and newer (notch) specific */
+        @media only screen
+        and (device-width: 375px)
+        and (device-height: 812px)
+        and (-webkit-device-pixel-ratio: 3) {
+            .hero-container {
+                padding-top: env(safe-area-inset-top);
+            }
+            
+            .chatbot-widget {
+                bottom: calc(30px + env(safe-area-inset-bottom));
+            }
+            
+            .team-icons {
+                bottom: calc(110px + env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Large Desktop Screens - Optimize 20% auth width */
+        @media (min-width: 1920px) {
+            .auth-section {
+                padding: 50px 45px;
+            }
+            
+            .academy-branding h1 {
+                font-size: 2rem;
+            }
+            
+            .academy-branding p {
+                font-size: 1.1rem;
+            }
+            
+            .auth-header h2 {
+                font-size: 1.6rem;
+            }
+            
+            .auth-header p {
+                font-size: 1rem;
+            }
+            
+            .platform-badge img {
+                height: 38px;
+            }
+            
+            .form-control {
+                padding: 12px 16px;
+                font-size: 1rem;
+            }
+            
+            .submit-btn {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Small Desktop/Laptop Screens - maintain 20% */
+        @media (max-width: 1366px) and (min-width: 1025px) {
+            /* Auth section already set to 20% by default */
+        }
+        
+        /* High DPI Screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .feature-icon {
+                image-rendering: crisp-edges;
+            }
+            
+            .platform-badge img {
+                image-rendering: -webkit-optimize-contrast;
+            }
+        }
+        
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .feature-card:hover {
+                transform: none;
+            }
+            
+            .team-button:hover {
+                transform: none;
+            }
+            
+            .quick-reply:hover {
+                transform: none;
+            }
+            
+            .submit-btn, .submit-contact-btn, .send-button {
+                transition: background 0.2s;
+            }
+            
+            .submit-btn:active, .submit-contact-btn:active {
+                transform: scale(0.98);
+            }
+            
+            /* Increase touch targets */
+            .tab-btn {
+                min-height: 48px;
+            }
+            
+            .form-control {
+                min-height: 48px;
+            }
+            
+            .quick-reply {
+                min-height: 40px;
+                display: flex;
+                align-items: center;
+            }
+        }
+        
+        /* Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1a1a1a;
+                --text-color: #ffffff;
             }
         }
     </style>
 </head>
-<body>
+<body ontouchstart="">
     <!-- Section 1: Video Background with Login/Register -->
     <div class="hero-container">
-        <section class="video-section">
-            <video class="video-bg" autoplay muted loop playsinline>
-                <source src="./assets/tinywow_02176818438403900000000000000000000ffffac14ab68de1c6b_87206537.mp4" type="video/mp4">
-            </video>
-            <div class="video-overlay"></div>
-        </section>
-        
+        <!-- Auth Section - Now on the left, 15% width -->
         <section class="auth-section">
             <div class="auth-container">
                 <div class="academy-branding">
@@ -1869,6 +2396,16 @@
                     <button type="submit" class="submit-btn">Create Account</button>
                 </form>
             </div>
+        </section>
+        
+        <!-- Video Section - Now on the right, 85% width -->
+        <section class="video-section">
+            <video class="video-bg" autoplay muted loop playsinline poster="./assets/hero-background.png">
+                <source src="./assets/tinywow_02176818438403900000000000000000000ffffac14ab68de1c6b_87206537.mp4" type="video/mp4">
+                <!-- Fallback for browsers that don't support video -->
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
         </section>
     </div>
     
@@ -2169,6 +2706,48 @@
     </footer>
     
     <script>
+        // Mobile viewport height fix
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        setViewportHeight();
+        window.addEventListener('resize', setViewportHeight);
+        window.addEventListener('orientationchange', setViewportHeight);
+        
+        // iOS Safari fix for video autoplay
+        document.addEventListener('touchstart', function() {
+            const video = document.querySelector('.video-bg');
+            if (video && video.paused) {
+                video.play();
+            }
+        }, {once: true});
+        
+        // Prevent double-tap zoom on buttons
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
         // Tab switching
         function switchTab(tab) {
             const tabBtns = document.querySelectorAll('.tab-btn');
@@ -2246,19 +2825,39 @@
         createAIParticles('particles2');
         createAIParticles('particles3');
         
-        // Form submissions
+        // Form submissions with mobile-friendly feedback
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Login functionality would be implemented here');
+            // Add loading state
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Loading...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                alert('Login functionality would be implemented here');
+            }, 1000);
         });
         
         document.getElementById('register-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const accountType = document.querySelector('input[name="account-type"]:checked').value;
-            alert(`Registration as ${accountType} would be implemented here`);
+            // Add loading state
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Creating Account...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                alert(`Registration as ${accountType} would be implemented here`);
+            }, 1000);
         });
         
-        // Contact form submission
+        // Contact form submission with mobile optimization
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('contact-name').value;
@@ -2267,11 +2866,56 @@
             const subject = document.getElementById('contact-subject').value;
             const message = document.getElementById('contact-message').value;
             
-            // Here you would normally send this data to your backend
-            alert(`Thank you ${name}! We've received your inquiry about "${subject}" and will contact you at ${email || phone} soon.`);
+            // Add loading state
+            const btn = this.querySelector('.submit-contact-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
             
-            // Reset form
-            this.reset();
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: #4CD964;
+                    color: white;
+                    padding: 15px 30px;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    z-index: 10000;
+                    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                `;
+                successMsg.textContent = `Thank you ${name}! Message sent successfully.`;
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
+                
+                // Reset form
+                this.reset();
+            }, 1500);
+        });
+        
+        // Optimize input focus on mobile
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        this.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }, 300);
+                }
+            });
         });
     </script>
     
@@ -2282,7 +2926,7 @@
             <span class="team-tooltip">Expert Instructor</span>
         </div>
         <div class="team-button abdullah" onclick="openTeamPopup('abdullah')">
-            <span>👨‍💼</span>
+            <span>🧑</span>
             <span class="team-tooltip">CEO</span>
         </div>
     </div>
@@ -2370,7 +3014,7 @@
         <div class="popup-content">
             <div class="member-header">
                 <div class="member-avatar ceo">
-                    👨‍💼
+                    🧑
                 </div>
                 <div class="member-info">
                     <h2>Abdullah</h2>
@@ -2480,8 +3124,8 @@
                 chatNotification.style.display = 'none';
             }
             
-            // Focus input when opened
-            if (chatOpen) {
+            // Focus input when opened (except on mobile to prevent keyboard popup)
+            if (chatOpen && window.innerWidth > 768) {
                 setTimeout(() => chatInput.focus(), 300);
             }
         });
@@ -2621,6 +3265,41 @@
                 closeTeamPopup();
             }
         });
+    </script>
+    
+    <!-- Performance monitoring for mobile -->
+    <script>
+        // Monitor performance on mobile
+        if ('PerformanceObserver' in window) {
+            const observer = new PerformanceObserver((list) => {
+                for (const entry of list.getEntries()) {
+                    if (entry.duration > 3000) {
+                        console.warn('Slow interaction detected:', entry.name, entry.duration);
+                    }
+                }
+            });
+            observer.observe({entryTypes: ['largest-contentful-paint']});
+        }
+        
+        // Lazy load images on mobile
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
     </script>
 </body>
 </html>
