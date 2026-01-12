@@ -1,14 +1,19 @@
 [build]
-  # Directory to publish (where the built files are)
-  publish = "web-build"
+  # Directory to publish (the root directory with HTML files)
+  publish = "."
   
-  # Build command
-  command = "npm run build-web"
+  # Skip the build command - we'll serve static files directly
+  command = "echo 'Using pre-built static files'"
 
-# Redirects for single page application
+# Redirects for the main page
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/"
+  to = "/bepro-academy-complete.html"
+  status = 200
+
+[[redirects]]
+  from = "/index.html"
+  to = "/bepro-academy-complete.html"
   status = 200
 
 # Headers for better performance
