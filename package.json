@@ -8,7 +8,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "build-web": "node build-for-netlify.js"
   },
   "dependencies": {
     "expo": "~32.0.0",
