@@ -2756,7 +2756,7 @@
                 <!-- Platform Badge -->
                 <div style="text-align: center; margin-top: 30px;">
                     <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-bottom: 10px;">Powered by Advanced Financial Education Technology</p>
-                    <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem;">Platform Administrator: Abdullah Kofya | Lead Instructor: Ahmed Saied</p>
+                    <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem;">Platform Administrator: Abdullah Kofya | Lead Instructor: Ahmed Saeid</p>
                 </div>
             </div>
         </div>
@@ -3033,7 +3033,7 @@
     
     <!-- Team Icons -->
     <div class="team-icons">
-        <div class="team-button mohammed" onclick="openTeamPopup('ahmedsaied')">
+        <div class="team-button mohammed" onclick="openTeamPopup('ahmedsaeid')">
             <span>🧔‍♂️</span>
             <span class="team-tooltip">Expert Instructor</span>
         </div>
@@ -3046,8 +3046,8 @@
     <!-- Team Member Popups -->
     <div class="popup-overlay" id="popupOverlay" onclick="closeTeamPopup()"></div>
     
-    <!-- Ahmed Saied Popup -->
-    <div class="team-popup" id="ahmedsaiedPopup">
+    <!-- Ahmed Saeid Popup -->
+    <div class="team-popup" id="ahmedsaeidPopup">
         <div class="popup-header">
             <button class="popup-close" onclick="closeTeamPopup()">✕</button>
         </div>
@@ -3057,7 +3057,7 @@
                     🧔‍♂️
                 </div>
                 <div class="member-info">
-                    <h2>Ahmed Saied</h2>
+                    <h2>Ahmed Saeid</h2>
                     <p class="title">Senior Academic Lecturer & Financial Data Analysis Expert</p>
                     <span class="badge">Global Expert</span>
                 </div>
@@ -3065,7 +3065,7 @@
             
             <div class="popup-section">
                 <h3>📖 About</h3>
-                <p>Ahmed Saied is a world-renowned academic lecturer with exceptional expertise in company, financial, and stock data analysis. With decades of experience in both academic and professional spheres, he has established himself as a leading authority in financial markets analysis and economic data interpretation.</p>
+                <p>Ahmed Saeid is a world-renowned academic lecturer with exceptional expertise in company, financial, and stock data analysis. With decades of experience in both academic and professional spheres, he has established himself as a leading authority in financial markets analysis and economic data interpretation.</p>
             </div>
             
             <div class="popup-section">
@@ -3344,18 +3344,18 @@
         // Team Popup Functions
         function openTeamPopup(member) {
             const overlay = document.getElementById('popupOverlay');
-            const ahmedsaiedPopup = document.getElementById('ahmedsaiedPopup');
+            const ahmedsaeidPopup = document.getElementById('ahmedsaeidPopup');
             const abdullahkofyaPopup = document.getElementById('abdullahkofyaPopup');
             
             // Close any open popups first
-            ahmedsaiedPopup.classList.remove('active');
+            ahmedsaeidPopup.classList.remove('active');
             abdullahkofyaPopup.classList.remove('active');
             
             // Open the requested popup
             overlay.classList.add('active');
             
-            if (member === 'ahmedsaied') {
-                ahmedsaiedPopup.classList.add('active');
+            if (member === 'ahmedsaeid') {
+                ahmedsaeidPopup.classList.add('active');
             } else if (member === 'abdullahkofya') {
                 abdullahkofyaPopup.classList.add('active');
             }
@@ -3363,11 +3363,11 @@
         
         function closeTeamPopup() {
             const overlay = document.getElementById('popupOverlay');
-            const ahmedsaiedPopup = document.getElementById('ahmedsaiedPopup');
+            const ahmedsaeidPopup = document.getElementById('ahmedsaeidPopup');
             const abdullahkofyaPopup = document.getElementById('abdullahkofyaPopup');
             
             overlay.classList.remove('active');
-            ahmedsaiedPopup.classList.remove('active');
+            ahmedsaeidPopup.classList.remove('active');
             abdullahkofyaPopup.classList.remove('active');
         }
         
