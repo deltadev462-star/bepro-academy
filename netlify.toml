@@ -1,6 +1,8 @@
 [build]
   # Serve files from root directory
   publish = "."
+  # Override any UI build command - no build needed
+  command = "echo 'No build needed - serving static files'"
 
 # Headers for performance
 [[headers]]
