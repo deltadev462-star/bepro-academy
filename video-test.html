@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Test</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        video {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border: 2px solid #fff;
+            margin: 20px 0;
+        }
+        .status {
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .fallback {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #000428, #004e92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Video Test Page</h1>
+        
+        <div class="status">
+            <h3>Test 1: Direct Video Element</h3>
+            <video id="testVideo" width="600" controls autoplay muted loop>
+                <source src="./assets/hero-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>Video path: ./assets/hero-video.mp4</p>
+        </div>
+
+        <div class="status">
+            <h3>Test 2: Background Video (No Controls)</h3>
+            <div style="position: relative; width: 100%; height: 400px; overflow: hidden;">
+                <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" 
+                       autoplay muted loop playsinline>
+                    <source src="./assets/hero-video.mp4" type="video/mp4">
+                </video>
+                <div style="position: relative; z-index: 1; text-align: center; padding-top: 150px;">
+                    <h2>Content Over Video</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="status">
+            <h3>Test 3: Fallback Background</h3>
+            <div class="fallback">
+                If you see this, the video is not loading
+            </div>
+        </div>
+
+        <div class="status">
+            <h3>Debug Information:</h3>
+            <p id="debug">Checking video support...</p>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('testVideo');
+        const debug = document.getElementById('debug');
+        
+        let debugInfo = 'Browser: ' + navigator.userAgent + '<br>';
+        debugInfo += 'Video element supported: ' + (!!document.createElement('video').canPlayType) + '<br>';
+        debugInfo += 'MP4 support: ' + document.createElement('video').canPlayType('video/mp4') + '<br>';
+        
+        video.addEventListener('loadeddata', () => {
+            debugInfo += 'Video loaded successfully!<br>';
+            debug.innerHTML = debugInfo;
+        });
+        
+        video.addEventListener('error', (e) => {
+            debugInfo += 'Video error: ' + e.message + '<br>';
+            debug.innerHTML = debugInfo;
+        });
+        
+        // Try to play video
+        video.play().catch(e => {
+            debugInfo += 'Play failed: ' + e.message + '<br>';
+            debug.innerHTML = debugInfo;
+        });
+        
+        debug.innerHTML = debugInfo;
+    </script>
+</body>
+</html>

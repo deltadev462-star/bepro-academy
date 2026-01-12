@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BePro Academy - Animated Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section with Animated Background */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, 
+                #000428 0%,
+                #004e92 50%,
+                #009FFD 80%,
+                #2A93D5 100%
+            );
+        }
+        
+        /* Video Background */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            background: #96BF48;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.125rem;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: #7FA542;
+        }
+        
+        .platform-container {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 2;
+        }
+        
+        .platform-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .platform-badge span {
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* Video Instructions */
+        .video-notice {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            z-index: 10;
+            max-width: 300px;
+        }
+        
+        /* Features Card - 4cm height */
+        .features-card {
+            background: white;
+            height: 151px;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            margin: -75px 60px 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px) scale(0.8);
+            animation: cardEntrance 1s ease-out 0.5s forwards;
+        }
+        
+        @keyframes cardEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .brand-section {
+            flex: 1;
+        }
+        
+        .brand-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000428;
+            margin-bottom: 4px;
+        }
+        
+        .brand-tagline {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .divider {
+            width: 2px;
+            height: 60%;
+            background: #E0E0E0;
+            margin: 0 30px;
+        }
+        
+        .features-section {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        
+        .feature-highlight {
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .feature-separator {
+            font-size: 20px;
+            color: #009FFD;
+            font-weight: bold;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .features-card {
+                margin: -40px 20px 60px;
+                height: auto;
+                min-height: 151px;
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .divider {
+                width: 60%;
+                height: 2px;
+                margin: 20px 0;
+            }
+            
+            .features-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .video-notice {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section with Video Background -->
+    <section class="hero">
+        <!-- Video Background -->
+        <video class="video-background" autoplay loop muted playsinline>
+            <source src="./assets/hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="hero-content">
+            <h1>Master Financial Markets Analysis</h1>
+            <p>Join BePro Academy and become a professional financial analyst with real-world market insights</p>
+            <a href="#" class="cta-button">Start Learning Today</a>
+        </div>
+        
+        <div class="platform-container">
+            <div class="platform-badge">
+                <span>📱 iOS</span>
+            </div>
+            <div class="platform-badge">
+                <span>🤖 Android</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Card - 4cm Height with Animation -->
+    <div class="features-card">
+        <div class="brand-section">
+            <div class="brand-name">BePro Academy</div>
+            <div class="brand-tagline">Master Financial Markets Analysis</div>
+        </div>
+        <div class="divider"></div>
+        <div class="features-section">
+            <span class="feature-highlight">📊 Real-Time Market Analysis</span>
+            <span class="feature-separator">•</span>
+            <span class="feature-highlight">💹 Professional Trading</span>
+            <span class="feature-separator">•</span>
+            <span class="feature-highlight">🎓 Expert Certification</span>
+        </div>
+    </div>
+</body>
+</html>

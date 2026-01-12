@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BePro Academy - Video Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: white;
+            overflow: hidden;
+        }
+        
+        /* Full screen video container */
+        .video-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        /* Video element fills the screen */
+        #bgVideo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        
+        /* Content overlay */
+        .content-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background: #96BF48;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.125rem;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Platform badges */
+        .platforms {
+            position: absolute;
+            bottom: 50px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .platform {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Debug info */
+        .debug {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        /* Features card */
+        .features {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(50%);
+            background: white;
+            color: #333;
+            padding: 30px 50px;
+            border-radius: 25px;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            z-index: 2;
+        }
+        
+        .brand {
+            font-weight: bold;
+        }
+        
+        .brand-name {
+            font-size: 24px;
+            color: #000428;
+        }
+        
+        .brand-tagline {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Debug Info -->
+    <div class="debug" id="debug">
+        Loading video...
+    </div>
+
+    <!-- Video Background -->
+    <div class="video-wrapper">
+        <video id="bgVideo" autoplay muted loop playsinline>
+            <source src="./assets/hero-video.mp4" type="video/mp4">
+            <source src="assets/hero-video.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        
+        <!-- Content Overlay -->
+        <div class="content-overlay">
+            <h1>Master Financial Markets Analysis</h1>
+            <p>Join BePro Academy and become a professional financial analyst</p>
+            <a href="#" class="cta-button">Start Learning Today</a>
+            
+            <div class="platforms">
+                <div class="platform">📱 iOS</div>
+                <div class="platform">🤖 Android</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Features Card -->
+    <div class="features">
+        <div class="brand">
+            <div class="brand-name">BePro Academy</div>
+            <div class="brand-tagline">Master Financial Markets Analysis</div>
+        </div>
+        <div style="width: 2px; height: 40px; background: #ddd; margin: 0 20px;"></div>
+        <div style="display: flex; gap: 20px; font-size: 14px;">
+            <span>📊 Real-Time Market Analysis</span>
+            <span style="color: #009FFD;">•</span>
+            <span>💹 Professional Trading</span>
+            <span style="color: #009FFD;">•</span>
+            <span>🎓 Expert Certification</span>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('bgVideo');
+        const debug = document.getElementById('debug');
+        
+        // Update debug info
+        function updateDebug(message) {
+            debug.innerHTML = message + '<br>' + debug.innerHTML;
+        }
+        
+        // Video event handlers
+        video.addEventListener('loadstart', () => updateDebug('Video load started'));
+        video.addEventListener('loadedmetadata', () => updateDebug('Video metadata loaded'));
+        video.addEventListener('loadeddata', () => updateDebug('Video data loaded'));
+        video.addEventListener('canplay', () => updateDebug('Video can play'));
+        video.addEventListener('playing', () => {
+            updateDebug('Video is playing!');
+            setTimeout(() => debug.style.display = 'none', 3000);
+        });
+        
+        video.addEventListener('error', (e) => {
+            updateDebug('Video error: ' + (e.message || 'Unknown error'));
+        });
+        
+        // Try to play
+        video.play().catch(e => {
+            updateDebug('Play failed: ' + e.message);
+            // Add play button if autoplay fails
+            const playBtn = document.createElement('button');
+            playBtn.innerHTML = '▶ Play Video';
+            playBtn.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 20px 40px; font-size: 20px; background: #96BF48; color: white; border: none; border-radius: 10px; cursor: pointer; z-index: 100;';
+            playBtn.onclick = () => {
+                video.play();
+                playBtn.remove();
+            };
+            document.body.appendChild(playBtn);
+        });
+        
+        // Check video support
+        updateDebug('Video element supported: ' + !!document.createElement('video').canPlayType);
+        updateDebug('MP4 support: ' + document.createElement('video').canPlayType('video/mp4'));
+    </script>
+</body>
+</html>
