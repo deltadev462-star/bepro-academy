@@ -730,6 +730,14 @@
             position: relative;
             font-size: 1.8rem;
             border: 3px solid transparent;
+            overflow: hidden;
+        }
+        
+        .team-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         
         .team-button:hover {
@@ -1388,8 +1396,8 @@
             }
             
             .team-button {
-                width: 50px;
-                height: 50px;
+                width: 55px;
+                height: 55px;
                 font-size: 1.5rem;
             }
             
@@ -2011,8 +2019,8 @@
             }
             
             .team-button {
-                width: 55px;
-                height: 55px;
+                width: 58px;
+                height: 58px;
             }
             
             .team-button .whatsapp-badge {
@@ -2203,8 +2211,8 @@
             }
             
             .team-button {
-                width: 48px;
-                height: 48px;
+                width: 52px;
+                height: 52px;
                 font-size: 1.4rem;
             }
             
@@ -3084,7 +3092,7 @@
             <span class="team-tooltip">Expert Instructor</span>
         </div>
         <div class="team-button abdullah" onclick="openTeamPopup('abdullahkofiyh')">
-            <span>👨</span>
+            <img src="./assets/abdullah.png" alt="Abdullah Kofiyh - CEO">
             <span class="team-tooltip">CEO - 30 years</span>
         </div>
         <div class="team-button babrouk" onclick="openTeamPopup('abdullahbabrouk')">
@@ -3184,8 +3192,8 @@
         </div>
         <div class="popup-content">
             <div class="member-header">
-                <div class="member-avatar ceo">
-                    👨
+                <div class="member-avatar ceo" style="overflow: hidden;">
+                    <img src="./assets/abdullah.png" alt="Abdullah Kofiyh" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="member-info">
                     <h2>Abdullah Kofiyh</h2>
