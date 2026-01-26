@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
             user-select: none;
         }
         
-        input, textarea {
+        input, textarea, select {
             -webkit-user-select: text;
             user-select: text;
         }
@@ -57,50 +57,247 @@
             }
         }
         
-        /* Section 1: Video Background with Login Panel */
+        /* ========== TOP NAVIGATION BAR ========== */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(0, 4, 40, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-logo h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #009FFD 0%, #00D9FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .nav-link:hover {
+            background: rgba(0, 159, 253, 0.2);
+            color: #00D9FF;
+        }
+        
+        .nav-link.active {
+            background: rgba(0, 159, 253, 0.3);
+            color: #00D9FF;
+        }
+        
+        .nav-link-icon {
+            font-size: 1.1rem;
+        }
+        
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav-login-btn {
+            color: #fff;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-login-btn:hover {
+            border-color: #00D9FF;
+            color: #00D9FF;
+            background: rgba(0, 217, 255, 0.1);
+        }
+        
+        .nav-register-btn {
+            color: #fff;
+            background: linear-gradient(135deg, #009FFD 0%, #2A93D5 100%);
+            border: none;
+            padding: 12px 26px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 159, 253, 0.3);
+        }
+        
+        .nav-register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 159, 253, 0.4);
+        }
+        
+        /* Mobile menu toggle */
+        .nav-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        /* ========== AUTH MODAL ========== */
+        .auth-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,4,40,0.6) 0%, rgba(0,78,146,0.6) 100%),
+                        url('./assets/nanobana-generated.jpg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .auth-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .auth-modal {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .auth-modal-overlay.active .auth-modal {
+            transform: scale(1);
+        }
+        
+        .auth-modal-header {
+            background: linear-gradient(135deg, #009FFD 0%, #2A93D5 100%);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .auth-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .auth-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .auth-modal-header h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+        
+        .auth-modal-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+        
+        .auth-modal-body {
+            padding: 30px;
+        }
+        
+        /* Section 1: Video Background - Full Width */
         .hero-container {
             position: relative;
-            height: 100vh;
-            min-height: 600px;
+            height: calc(100vh - 70px + 3cm);
+            min-height: 700px;
             display: flex;
-            background: #000;
+            background: linear-gradient(135deg, rgba(0,4,40,0.6) 0%, rgba(0,78,146,0.6) 100%),
+                        url('./assets/nanobana-generated.jpg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin-top: 70px; /* Account for fixed navbar */
+            overflow: hidden; /* Prevent content overflow */
         }
         
-        /* Auth Panel - Now on the left, 20% width */
-        .auth-section {
-            width: 20%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: 5px 0 40px rgba(0,0,0,0.2);
-            overflow-y: auto;
-            position: relative;
-            z-index: 10;
-        }
-        
-        /* Video Section - Now 80% width */
+        /* Video Section - Now 100% width */
         .video-section {
-            width: 80%;
+            width: 100%;
             height: 100%;
             position: relative;
             overflow: hidden;
-            background: #000;
+            background: transparent;
+            flex-shrink: 0; /* Prevent shrinking */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .video-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            object-position: center center;
+            filter: brightness(0.6) contrast(1.2) saturate(1.1);
+            opacity: 0.5;
+            mix-blend-mode: overlay;
         }
         
         .video-overlay {
@@ -109,61 +306,288 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, rgba(0,4,40,0.3) 0%, rgba(0,78,146,0.3) 100%),
+                        linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.4) 100%);
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
+            overflow: hidden; /* Contain content */
         }
         
-        .auth-container {
-            width: 100%;
-            margin: 0 auto;
-        }
-        
-        /* Academy Branding */
-        .academy-branding {
+        /* Hero Content Overlay */
+        .hero-content {
+            position: relative;
+            z-index: 5;
             text-align: center;
-            margin-bottom: 20px;
+            color: white;
+            padding: 0 20px 80px 20px;
+            width: 100%;
+            max-height: 100%;
+            overflow: hidden; /* Prevent content overflow */
         }
         
-        .academy-branding h1 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            background: linear-gradient(135deg, #009FFD 0%, #2A93D5 100%);
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(90deg,
+                #00D9FF 0%,
+                #ffffff 20%,
+                #00D9FF 40%,
+                #009FFD 60%,
+                #ffffff 80%,
+                #00D9FF 100%);
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.3rem;
-            text-align: center;
+            animation: beproAppearDisappear 8s ease-in-out infinite;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            position: relative;
         }
         
-        .academy-branding p {
-            font-size: 0.9rem;
-            color: #666;
-            letter-spacing: 0.5px;
-            text-align: center;
+        .hero-content h1::before {
+            content: 'BEPRO ACADEMY';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(0, 217, 255, 0.8) 50%,
+                transparent 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: lightSweep 3s ease-in-out infinite;
+            pointer-events: none;
         }
         
-        /* Platform Badges */
-        .platform-badges {
+        .hero-content h1::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 200%;
+            background: radial-gradient(ellipse at center,
+                rgba(0, 217, 255, 0.3) 0%,
+                rgba(0, 159, 253, 0.1) 30%,
+                transparent 70%);
+            animation: glowPulse 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes beproAppearDisappear {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotateX(90deg);
+                filter: blur(30px);
+                letter-spacing: 50px;
+                background-position: 0% 50%;
+            }
+            5% {
+                opacity: 0.3;
+                transform: scale(0.5) rotateX(60deg);
+                filter: blur(20px);
+                letter-spacing: 30px;
+            }
+            15% {
+                opacity: 0.8;
+                transform: scale(1.1) rotateX(-10deg);
+                filter: blur(5px);
+                letter-spacing: 8px;
+            }
+            25% {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+                filter: blur(0) drop-shadow(0 0 40px rgba(0, 217, 255, 0.8));
+                letter-spacing: 5px;
+                background-position: 50% 50%;
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg) translateY(-5px);
+                filter: blur(0) drop-shadow(0 0 60px rgba(0, 217, 255, 1)) drop-shadow(0 0 120px rgba(0, 159, 253, 0.6));
+                letter-spacing: 5px;
+                background-position: 100% 50%;
+            }
+            75% {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+                filter: blur(0) drop-shadow(0 0 40px rgba(0, 217, 255, 0.8));
+                letter-spacing: 5px;
+                background-position: 150% 50%;
+            }
+            85% {
+                opacity: 0.8;
+                transform: scale(1.05) rotateX(10deg);
+                filter: blur(5px);
+                letter-spacing: 15px;
+            }
+            95% {
+                opacity: 0.3;
+                transform: scale(0.6) rotateX(-60deg);
+                filter: blur(20px);
+                letter-spacing: 40px;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3) rotateX(-90deg);
+                filter: blur(30px);
+                letter-spacing: 50px;
+                background-position: 200% 50%;
+            }
+        }
+        
+        @keyframes lightSweep {
+            0% {
+                background-position: -100% 0;
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                background-position: 200% 0;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
+            25% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            75% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+        }
+        
+        /* Particle effects around the title */
+        .hero-title-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-title-particles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            overflow: visible;
+        }
+        
+        .hero-title-particles span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00D9FF;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00D9FF, 0 0 20px #00D9FF, 0 0 30px #009FFD;
+            animation: particleFloat 6s ease-in-out infinite;
+        }
+        
+        .hero-title-particles span:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .hero-title-particles span:nth-child(2) { left: 20%; top: 80%; animation-delay: 0.5s; }
+        .hero-title-particles span:nth-child(3) { left: 30%; top: 10%; animation-delay: 1s; }
+        .hero-title-particles span:nth-child(4) { left: 40%; top: 90%; animation-delay: 1.5s; }
+        .hero-title-particles span:nth-child(5) { left: 50%; top: 5%; animation-delay: 2s; }
+        .hero-title-particles span:nth-child(6) { left: 60%; top: 95%; animation-delay: 2.5s; }
+        .hero-title-particles span:nth-child(7) { left: 70%; top: 15%; animation-delay: 3s; }
+        .hero-title-particles span:nth-child(8) { left: 80%; top: 85%; animation-delay: 3.5s; }
+        .hero-title-particles span:nth-child(9) { left: 90%; top: 25%; animation-delay: 4s; }
+        .hero-title-particles span:nth-child(10) { left: 95%; top: 75%; animation-delay: 4.5s; }
+        
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                transform: translateY(-10px) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-40px) scale(1.5);
+                opacity: 0.8;
+            }
+            90% {
+                transform: translateY(-80px) scale(0.5);
+                opacity: 0.2;
+            }
+        }
+        
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        
+        .hero-cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #009FFD 0%, #2A93D5 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 159, 253, 0.4);
+        }
+        
+        .hero-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 159, 253, 0.5);
+        }
+        
+        /* Platform Badges in Hero */
+        .hero-badges {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 20px;
+            margin-top: 40px;
         }
         
-        .platform-badge {
-            display: inline-block;
-            transition: transform 0.3s;
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
         
-        .platform-badge:hover {
+        .hero-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
             transform: translateY(-2px);
         }
         
-        .platform-badge img {
-            height: 32px;
+        .hero-badge img {
+            height: 30px;
             width: auto;
         }
         
@@ -266,8 +690,14 @@
         
         /* Section 2: Animated Statements */
         .statements-section {
-            height: 2.5cm;
-            background: #2a2a2a;
+            height: 100px;
+            min-height: 100px;
+            max-height: 100px;
+            background: linear-gradient(135deg, rgba(0,4,40,0.8) 0%, rgba(0,78,146,0.8) 100%),
+                        url('./assets/nanobana-generated.jpg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -276,6 +706,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             margin: 0;
             padding: 0;
+            flex-shrink: 0; /* Prevent shrinking */
         }
         
         .particles {
@@ -389,10 +820,15 @@
         
         /* Section 3: Platform Features */
         .platform-section {
-            background: #2a2a2a;
+            background: linear-gradient(135deg, rgba(0,4,40,0.85) 0%, rgba(0,78,146,0.85) 100%),
+                        url('./assets/hero-background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             padding: 80px 20px;
             margin: 0;
             position: relative;
+            overflow: hidden; /* Contain content */
         }
         
         .platform-container {
@@ -476,13 +912,6 @@
         }
         
         /* Animated background particles for platform section */
-        .platform-section {
-            background: #2a2a2a;
-            padding: 80px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
         .platform-section::before {
             content: '';
             position: absolute;
@@ -490,10 +919,10 @@
             height: 200%;
             top: -50%;
             left: -50%;
-            background: radial-gradient(circle, rgba(0,217,255,0.1) 1px, transparent 1px);
+            background: radial-gradient(circle, rgba(0,217,255,0.15) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: backgroundMove 20s linear infinite;
-            opacity: 0.5;
+            opacity: 0.4;
         }
         
         @keyframes backgroundMove {
@@ -553,9 +982,9 @@
         }
         
         .feature-card {
-            background: rgba(58, 58, 58, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 4, 40, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 217, 255, 0.3);
             border-radius: 16px;
             padding: 40px 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -584,9 +1013,9 @@
         
         .feature-card:hover {
             transform: translateY(-10px);
-            background: rgba(58, 58, 58, 1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 78, 146, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 159, 253, 0.4);
+            border-color: rgba(0, 217, 255, 0.6);
         }
         
         .feature-icon {
@@ -1416,9 +1845,9 @@
         }
         
         .stat-card {
-            background: #808080;
+            background: rgba(0, 4, 40, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,0,0,0.2);
+            border: 1px solid rgba(0, 217, 255, 0.2);
             border-radius: 20px;
             padding: 40px 30px;
             transition: all 0.3s;
@@ -1444,8 +1873,9 @@
         
         .stat-card:hover {
             transform: translateY(-10px);
-            background: #909090;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            background: rgba(0, 78, 146, 0.7);
+            box-shadow: 0 20px 40px rgba(0, 159, 253, 0.3);
+            border-color: rgba(0, 217, 255, 0.4);
         }
         
         .stat-number {
@@ -1462,7 +1892,7 @@
         
         .stat-label {
             font-size: 1.1rem;
-            color: #000000;
+            color: rgba(255, 255, 255, 0.9);
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 800;
@@ -1482,11 +1912,11 @@
             align-items: center;
             gap: 15px;
             padding: 20px 30px;
-            background: #808080;
+            background: rgba(0, 4, 40, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,0,0,0.2);
+            border: 1px solid rgba(0, 217, 255, 0.2);
             border-radius: 50px;
-            color: #000000;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.1rem;
             transition: all 0.3s;
             font-weight: 800;
@@ -1494,9 +1924,10 @@
         }
         
         .education-feature:hover {
-            background: #909090;
+            background: rgba(0, 78, 146, 0.7);
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0, 159, 253, 0.3);
+            border-color: rgba(0, 217, 255, 0.4);
         }
         
         .feature-check {
@@ -1511,7 +1942,7 @@
         /* Background Section with Stats */
         .new-background-section {
             position: relative;
-            min-height: 100vh;
+            min-height: 600px;
             padding: 80px 20px;
             background: linear-gradient(135deg, rgba(0,4,40,0.7) 0%, rgba(0,78,146,0.7) 100%),
                         url('./assets/nanobana-generated.jpg.png');
@@ -1522,6 +1953,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            overflow: hidden;
+            box-sizing: border-box;
         }
         
         .new-section-content {
@@ -1570,9 +2003,9 @@
         /* Section 6: Contact Form */
         .contact-section {
             position: relative;
-            min-height: 100vh;
-            background: linear-gradient(135deg, rgba(0,4,40,0.85) 0%, rgba(0,78,146,0.85) 100%),
-                        url('./assets/hero-background.png');
+            min-height: 600px;
+            background: linear-gradient(135deg, rgba(0,4,40,0.9) 0%, rgba(0,78,146,0.9) 100%),
+                        url('./assets/image22.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -1580,6 +2013,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            box-sizing: border-box;
         }
         
         .contact-container {
@@ -1848,62 +2283,100 @@
             .contact-form {
                 padding: 40px;
             }
-        }
-        
-        /* Tablets - maintain side-by-side with 25% auth */
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .auth-section {
-                width: 25%;
-                padding: 30px 20px;
+            
+            .nav-links {
+                gap: 4px;
             }
             
-            .video-section {
-                width: 75%;
+            .nav-link {
+                padding: 8px 12px;
+                font-size: 0.85rem;
             }
             
-            .academy-branding h1 {
-                font-size: 1.4rem;
-            }
-            
-            .platform-badge img {
-                height: 28px;
+            .hero-content h1 {
+                font-size: 2.8rem;
             }
         }
         
         /* Mobile Devices - Portrait */
         @media (max-width: 768px) {
+            /* Navigation Mobile */
+            .top-navbar {
+                padding: 0 20px;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 4, 40, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+            }
+            
+            .nav-links.mobile-open {
+                display: flex;
+            }
+            
+            .nav-link {
+                width: 100%;
+                padding: 15px 20px;
+                border-radius: 10px;
+            }
+            
+            .nav-auth {
+                gap: 10px;
+            }
+            
+            .nav-login-btn, .nav-register-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .nav-mobile-toggle {
+                display: block;
+            }
+            
             /* Hero Section Mobile Optimization */
             .hero-container {
-                height: auto;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                overflow-y: auto;
+                height: calc(100vh - 70px + 3cm);
+                min-height: 600px;
+                margin-top: 70px;
+                overflow: hidden;
             }
             
             .video-section {
                 width: 100%;
-                height: 50vh;
-                min-height: 300px;
-                position: relative;
-                order: 1;
-                flex-shrink: 0;
+                height: 100%;
+                min-height: 100%;
             }
             
-            .auth-section {
-                width: 100%;
-                min-height: 50vh;
-                height: auto;
-                order: 2;
-                box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
-                padding: 30px 20px;
-                overflow-y: visible;
-                position: relative;
-                background: white;
+            .hero-content h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+            }
+            
+            .hero-cta-btn {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+            
+            .hero-badges {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
             }
             
             .video-bg {
-                object-fit: cover;
+                object-fit: contain;
                 object-position: center;
                 width: 100%;
                 height: 100%;
@@ -1911,20 +2384,7 @@
             
             /* Ensure video is visible on mobile */
             .video-overlay {
-                background: rgba(0, 0, 0, 0.2);
-            }
-            
-            .academy-branding h1 {
-                font-size: 1.5rem;
-            }
-            
-            .platform-badges {
-                gap: 10px;
-                margin-bottom: 15px;
-            }
-            
-            .platform-badge img {
-                height: 30px;
+                background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%);
             }
             
             /* Typography Mobile Optimization */
@@ -1951,6 +2411,16 @@
             
             .new-section-content p {
                 font-size: 1.2rem;
+            }
+            
+            /* Auth Modal Mobile */
+            .auth-modal {
+                width: 95%;
+                max-height: 85vh;
+            }
+            
+            .auth-modal-body {
+                padding: 20px;
             }
             
             /* Grid Layouts Mobile */
@@ -2060,22 +2530,35 @@
                 overflow-x: hidden;
                 overflow-y: auto;
             }
-            
-            /* Ensure both sections are visible */
-            .hero-container > * {
-                flex-shrink: 0;
-            }
         }
         
         /* Small Mobile Devices */
         @media (max-width: 480px) {
-            .video-section {
-                height: 40vh;
-                min-height: 250px;
+            .top-navbar {
+                height: 60px;
+                padding: 0 15px;
             }
             
-            .auth-section {
-                min-height: 60vh;
+            .nav-logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                top: 60px;
+            }
+            
+            .hero-container {
+                margin-top: 60px;
+                height: calc(100vh - 60px + 3cm);
+                min-height: 550px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
             }
             /* Chatbot Mobile Optimization */
             .chatbot-widget {
@@ -2233,42 +2716,18 @@
         /* Landscape Mobile */
         @media (max-width: 812px) and (orientation: landscape) {
             .hero-container {
-                flex-direction: row;
-                height: 100vh;
-                overflow: hidden;
+                height: calc(100vh - 70px + 2cm);
+                min-height: 400px;
             }
             
-            .auth-section {
-                width: 35%;
-                height: 100vh;
-                min-height: unset;
-                order: 1;
-                box-shadow: 5px 0 20px rgba(0,0,0,0.1);
-                padding: 20px 15px;
-                overflow-y: auto;
-            }
-            
-            .video-section {
-                width: 65%;
-                height: 100vh;
-                min-height: unset;
-                order: 2;
-            }
-            
-            .academy-branding h1 {
-                font-size: 1.2rem;
-            }
-            
-            .platform-badges {
-                margin-bottom: 10px;
-            }
-            
-            .platform-badge img {
-                height: 22px;
+            .hero-content h1 {
+                font-size: 2rem;
             }
             
             .statements-section {
-                height: 3cm;
+                height: 80px;
+                min-height: 80px;
+                max-height: 80px;
             }
             
             .chatbot-window {
@@ -2282,8 +2741,13 @@
         and (device-width: 375px)
         and (device-height: 812px)
         and (-webkit-device-pixel-ratio: 3) {
-            .hero-container {
+            .top-navbar {
                 padding-top: env(safe-area-inset-top);
+                height: calc(70px + env(safe-area-inset-top));
+            }
+            
+            .hero-container {
+                margin-top: calc(70px + env(safe-area-inset-top));
             }
             
             .chatbot-widget {
@@ -2296,46 +2760,20 @@
             }
         }
         
-        /* Large Desktop Screens - Optimize 20% auth width */
+        /* Large Desktop Screens */
         @media (min-width: 1920px) {
-            .auth-section {
-                padding: 50px 45px;
+            .nav-link {
+                padding: 12px 20px;
+                font-size: 1rem;
             }
             
-            .academy-branding h1 {
-                font-size: 2rem;
+            .hero-content h1 {
+                font-size: 4.5rem;
             }
             
-            .academy-branding p {
-                font-size: 1.1rem;
-            }
-            
-            .auth-header h2 {
+            .hero-content p {
                 font-size: 1.6rem;
             }
-            
-            .auth-header p {
-                font-size: 1rem;
-            }
-            
-            .platform-badge img {
-                height: 38px;
-            }
-            
-            .form-control {
-                padding: 12px 16px;
-                font-size: 1rem;
-            }
-            
-            .submit-btn {
-                padding: 15px;
-                font-size: 1.1rem;
-            }
-        }
-        
-        /* Small Desktop/Laptop Screens - maintain 20% */
-        @media (max-width: 1366px) and (min-width: 1025px) {
-            /* Auth section already set to 20% by default */
         }
         
         /* High DPI Screens */
@@ -2404,11 +2842,9 @@
             /* Ensure video plays on mobile */
             .video-bg {
                 z-index: 1;
-                position: absolute;
-                top: 0;
-                left: 0;
                 width: 100%;
                 height: 100%;
+                object-fit: contain;
             }
         }
         
@@ -2432,33 +2868,227 @@
                 --text-color: #ffffff;
             }
         }
+        
+        /* ANIMATED SIDE PANELS */
+        .side-panel {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 15px 8px;
+            pointer-events: none;
+        }
+        
+        .side-panel-left {
+            left: 5px;
+            align-items: flex-start;
+        }
+        
+        .side-panel-right {
+            right: 5px;
+            align-items: flex-end;
+        }
+        
+        .side-phrase {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            background: rgba(0, 4, 40, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.5);
+            opacity: 1;
+            transform: translateX(0);
+            animation: sidePhraseFadeIn 0.8s ease-out forwards, floatingPhrase 4s ease-in-out infinite;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(0, 159, 253, 0.3), 0 0 30px rgba(0, 217, 255, 0.15);
+            pointer-events: auto;
+        }
+        
+        .side-panel-right .side-phrase {
+            flex-direction: row-reverse;
+        }
+        
+        .side-phrase:nth-child(1) { animation-delay: 0s, 0s; }
+        .side-phrase:nth-child(2) { animation-delay: 0.2s, 0.5s; }
+        .side-phrase:nth-child(3) { animation-delay: 0.4s, 1s; }
+        .side-phrase:nth-child(4) { animation-delay: 0.6s, 1.5s; }
+        .side-phrase:nth-child(5) { animation-delay: 0.8s, 2s; }
+        
+        @keyframes sidePhraseFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .side-panel-right .side-phrase {
+            animation-name: sidePhraseRightFadeIn;
+        }
+        
+        @keyframes sidePhraseRightFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .side-phrase-icon {
+            font-size: 1rem;
+            animation: iconGlowPulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 6px rgba(0, 217, 255, 0.6));
+        }
+        
+        @keyframes iconGlowPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.6));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.9));
+                transform: scale(1.1);
+            }
+        }
+        
+        .side-phrase-text {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+            animation: textGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+                color: #fff;
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 159, 253, 0.6);
+                color: #e0f7ff;
+            }
+        }
+        
+        .side-phrase:hover {
+            background: rgba(0, 159, 253, 0.3);
+            border-color: rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 159, 253, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .side-phrase.floating {
+            animation: floatingPhrase 4s ease-in-out infinite;
+        }
+        
+        .side-phrase:nth-child(1).floating { animation-delay: 0s; }
+        .side-phrase:nth-child(2).floating { animation-delay: 0.5s; }
+        .side-phrase:nth-child(3).floating { animation-delay: 1s; }
+        .side-phrase:nth-child(4).floating { animation-delay: 1.5s; }
+        .side-phrase:nth-child(5).floating { animation-delay: 2s; }
+        
+        @keyframes floatingPhrase {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .side-phrase-text {
+                font-size: 0.75rem;
+            }
+            .side-phrase {
+                padding: 10px 14px;
+                gap: 8px;
+            }
+            .side-phrase-icon {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Responsive side panels - visible on all screens */
+        @media (max-width: 1400px) {
+            .side-phrase-text {
+                font-size: 0.55rem;
+            }
+            .side-phrase {
+                padding: 5px 8px;
+                gap: 5px;
+            }
+            .side-phrase-icon {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .side-phrase-text {
+                display: none;
+            }
+            .side-phrase {
+                padding: 8px;
+                border-radius: 50%;
+            }
+            .side-phrase-icon {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .side-panel {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body ontouchstart="">
-    <!-- Section 1: Video Background with Login/Register -->
-    <div class="hero-container">
-        <!-- Auth Section - Now on the left, 15% width -->
-        <section class="auth-section">
-            <div class="auth-container">
-                <div class="academy-branding">
-                    <h1>BEPRO-ACADEMY</h1>
-                    <p>Master Financial Markets Analysis</p>
-                </div>
-                
-                <div class="platform-badges">
-                    <a href="#" class="platform-badge">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
-                    </a>
-                    <a href="#" class="platform-badge">
-                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
-                    </a>
-                </div>
-                
-                <div class="auth-header">
-                    <h2>Welcome Back</h2>
-                    <p>Continue your journey in finance</p>
-                </div>
-                
+    <!-- Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="nav-logo">
+            <h1>BEPRO-ACADEMY</h1>
+        </div>
+        
+        <button class="nav-mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+        
+        <div class="nav-links" id="navLinks">
+            <a href="#" class="nav-link active">Financial Markets</a>
+            <a href="#" class="nav-link">Data Analysis</a>
+            <a href="#" class="nav-link">Programming</a>
+            <a href="#" class="nav-link">IT</a>
+            <a href="#" class="nav-link">Design</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        
+        <div class="nav-auth">
+            <button class="nav-login-btn" onclick="openAuthModal('login')">Login</button>
+            <button class="nav-register-btn" onclick="openAuthModal('register')">Sign Up</button>
+        </div>
+    </nav>
+    
+    <!-- Auth Modal -->
+    <div class="auth-modal-overlay" id="authModalOverlay" onclick="closeAuthModal(event)">
+        <div class="auth-modal" onclick="event.stopPropagation()">
+            <div class="auth-modal-header">
+                <button class="auth-modal-close" onclick="closeAuthModal()">✕</button>
+                <h2 id="authModalTitle">Welcome Back</h2>
+                <p id="authModalSubtitle">Continue your journey in finance</p>
+            </div>
+            <div class="auth-modal-body">
                 <div class="auth-tabs">
                     <button class="tab-btn active" onclick="switchTab('login')">Login</button>
                     <button class="tab-btn" onclick="switchTab('register')">Sign Up</button>
@@ -2510,18 +3140,40 @@
                     </div>
                     
                     <button type="submit" class="submit-btn">Create Account</button>
+                    
+                    <!-- App Store Badges -->
+                    <div class="register-app-badges" style="display: flex; justify-content: center; gap: 15px; margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
+                        <a href="#" style="transition: transform 0.3s;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style="height: 40px;">
+                        </a>
+                        <a href="#" style="transition: transform 0.3s;">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" style="height: 40px;">
+                        </a>
+                    </div>
                 </form>
             </div>
-        </section>
-        
-        <!-- Video Section - Now on the right, 85% width -->
+        </div>
+    </div>
+    
+    <!-- Section 1: Full-Width Video Background with Hero Content -->
+    <div class="hero-container">
         <section class="video-section">
             <video class="video-bg" autoplay muted loop playsinline poster="./assets/hero-background.png">
                 <source src="./assets/tinywow_02176818438403900000000000000000000ffffac14ab68de1c6b_87206537.mp4" type="video/mp4">
-                <!-- Fallback for browsers that don't support video -->
                 Your browser does not support the video tag.
             </video>
-            <div class="video-overlay"></div>
+            <div class="video-overlay">
+                <div class="hero-content" style="max-width: none; padding-top: 80px;">
+                    <div class="hero-title-wrapper">
+                        <h1>BePro Academy</h1>
+                        <div class="hero-title-particles">
+                            <span></span><span></span><span></span><span></span><span></span>
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <p>An innovative learning platform empowering you to master programming, data analysis, cybersecurity, and financial markets</p>
+                </div>
+            </div>
         </section>
     </div>
     
@@ -2906,10 +3558,41 @@
             });
         });
         
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('mobile-open');
+        }
+        
+        // Auth Modal Functions
+        function openAuthModal(type) {
+            const overlay = document.getElementById('authModalOverlay');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Switch to appropriate tab
+            switchTab(type);
+            
+            // Close mobile menu if open
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('mobile-open');
+        }
+        
+        function closeAuthModal(event) {
+            // If event exists and target is not the overlay, don't close
+            if (event && event.target !== event.currentTarget) return;
+            
+            const overlay = document.getElementById('authModalOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
         // Tab switching
         function switchTab(tab) {
-            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabBtns = document.querySelectorAll('.auth-modal .tab-btn');
             const forms = document.querySelectorAll('.auth-form');
+            const modalTitle = document.getElementById('authModalTitle');
+            const modalSubtitle = document.getElementById('authModalSubtitle');
             
             tabBtns.forEach(btn => btn.classList.remove('active'));
             forms.forEach(form => form.classList.remove('active'));
@@ -2917,15 +3600,22 @@
             if (tab === 'login') {
                 tabBtns[0].classList.add('active');
                 document.getElementById('login-form').classList.add('active');
-                document.querySelector('.auth-header h2').textContent = 'Welcome Back';
-                document.querySelector('.auth-header p').textContent = 'Continue your journey in finance';
+                if (modalTitle) modalTitle.textContent = 'Welcome Back';
+                if (modalSubtitle) modalSubtitle.textContent = 'Continue your journey in finance';
             } else {
                 tabBtns[1].classList.add('active');
                 document.getElementById('register-form').classList.add('active');
-                document.querySelector('.auth-header h2').textContent = 'Join BePro-Academy';
-                document.querySelector('.auth-header p').textContent = 'Start your financial education today';
+                if (modalTitle) modalTitle.textContent = 'Join BePro-Academy';
+                if (modalSubtitle) modalSubtitle.textContent = 'Start your financial education today';
             }
         }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAuthModal();
+            }
+        });
         
         // Generate particles
         function createParticles() {
